@@ -14,6 +14,7 @@ export default defineConfig({
     caseSensitive: true,
     alias: {
       "@": "/resources/js/React",
+      "@types": "/resources/js/React/common/types",
       "@pages": "/resources/js/React/Pages",
       "@layouts": "/resources/js/React/Layouts",
       "@ui-elements": "/resources/js/React/Components/ui-elements",

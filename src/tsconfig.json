@@ -13,6 +13,7 @@
     "noEmit": true,
     "paths": {
       "@/*": ["./resources/js/React/*"],
+      "@common/*": ["./resources/js/React/common/*"],
       "@pages/*": ["./resources/js/React/Pages/*"],
       "@layouts": ["./resources/js/React/Layouts/index.tsx"],
       "@ui-elements": ["./resources/js/React/Components/ui-elements/index.tsx"],
