@@ -13,7 +13,7 @@ create-project:
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	@make fresh
-	@make npm-init
+	@make npm-install
 	@make react
 
 install-recommend-packages:
@@ -34,7 +34,7 @@ init:
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	@make fresh
-	@make npm-init
+	@make npm-install
 	@make npm-watch
 
 remake:
@@ -108,6 +108,7 @@ sql:
 redis:
 	docker compose exec redis redis-cli
 ide-helper:
+	docker compose exec app composer require --dev barryvdh/laravel-ide-helper
 	docker compose exec app php artisan clear-compiled
 	docker compose exec app php artisan ide-helper:generate
 	docker compose exec app php artisan ide-helper:meta
@@ -151,3 +152,7 @@ npm-hot:
 	docker compose exec app npm run hot
 fresh:
 	docker compose exec app php artisan migrate:fresh --seed
+eslint-install:
+	docker compose exec app npm install -D @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript
+	docker compose exec app npm install -D eslint-config-prettier eslint-config-standard-with-typescript eslint-plugin-import eslint-plugin-n eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh
+	docker compose exec app touch eslintrc.cjs

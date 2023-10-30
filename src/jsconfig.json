@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["resources/js/React/*"]
+    }
+  },
+  "exclude": ["node_modules", "public"]
+}
