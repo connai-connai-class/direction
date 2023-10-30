@@ -12,7 +12,13 @@
     "allowSyntheticDefaultImports": true,
     "noEmit": true,
     "paths": {
-      "@/*": ["./resources/js/React/*"]
+      "@/*": ["./resources/js/React/*"],
+      "@pages/*": ["./resources/js/React/Pages/*"],
+      "@layouts": ["./resources/js/React/Layouts/index.tsx"],
+      "@ui-elements": ["./resources/js/React/Components/ui-elements/index.tsx"],
+      "@ui-parts": ["./resources/js/React/Components/ui-parts/index.tsx"],
+      "@icons": ["./resources/js/React/Components/ui-elements/Icons/index.tsx"],
+      "@columns": ["./resources/js/React/Components/Column/index.js"]
     }
   },
   "include": [

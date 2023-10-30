@@ -1,19 +1,16 @@
 import { useEffect, FormEventHandler } from "react";
-import Checkbox from "@/Components/Checkbox";
-import GuestLayout from "@/Layouts/GuestLayout";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { GuestLayout } from "@layouts";
+import {
+  InputError,
+  InputLabel,
+  TextField,
+  PrimaryButton,
+  Checkbox,
+} from "@ui-elements";
+import { Props } from "./type";
 
-export default function Login({
-  status,
-  canResetPassword,
-}: {
-  status?: string;
-  canResetPassword: boolean;
-}) {
+export default function Login({ status, canResetPassword }: Props) {
   const { data, setData, post, processing, errors, reset } = useForm({
     email: "",
     password: "",
@@ -28,7 +25,6 @@ export default function Login({
 
   const submit: FormEventHandler = (e) => {
     e.preventDefault();
-
     post(route("login"));
   };
 
@@ -44,7 +40,7 @@ export default function Login({
         <div>
           <InputLabel htmlFor="email" value="Email" />
 
-          <TextInput
+          <TextField
             id="email"
             type="email"
             name="email"
@@ -61,7 +57,7 @@ export default function Login({
         <div className="mt-4">
           <InputLabel htmlFor="password" value="Password" />
 
-          <TextInput
+          <TextField
             id="password"
             type="password"
             name="password"
