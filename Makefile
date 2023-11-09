@@ -153,6 +153,5 @@ npm-hot:
 fresh:
 	docker compose exec app php artisan migrate:fresh --seed
 eslint-install:
-	docker compose exec app npm install -D @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript
-	docker compose exec app npm install -D eslint-config-prettier eslint-config-standard-with-typescript eslint-plugin-import eslint-plugin-n eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh
-	docker compose exec app touch eslintrc.cjs
+	docker compose exec app npm i -D eslint eslint-config-prettier eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks husky lint-staged prettier pretty-quick
+	docker compose exec app touch .eslintrc.cjs

@@ -1,55 +1,46 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
+  root: true,
+  globals: {
+    route: 'readonly',
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/recommended",
-  ],
-  overrides: [
-    {
-      files: ["**/*.{js,jsx,ts,tsx"],
-    },
-  ],
-  parser: "@typescript-eslint/parser",
+  env: {
+    es2021: true,
+    browser: true,
+    node: true,
+  },
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    sourceType: 'module',
+    ecmaVersion: 2020,
     ecmaFeatures: {
       jsx: true,
-      tsx: true,
     },
   },
-  plugins: ["@typescript-eslint", "react", "import", "react-refresh"],
+  plugins: ['react-refresh', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+  ],
   rules: {
-    "import/prefer-default-export": "off", // named exportがエラーになるので使えるようにoff
-    "react-refresh/only-export-components": "warn",
-    "react/jsx-filename-extension": [
-      //jsx形式のファイル拡張子をjsxもしくはtsxに限定
-      "error",
-      {
-        extensions: [".jsx", ".tsx"],
-      },
+    'react-refresh/only-export-components': 'warn',
+    'react/prop-types': 'off',
+    'no-unused-vars': [
+      'error',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
     ],
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    semi: ["error", "always"],
-    "semi-spacing": ["error", { after: true, before: false }],
-    "semi-style": ["error", "last"],
-    "react/prop-types": "off",
+    'no-undef': 'error',
+
+    'react/jsx-first-prop-new-line': [2, 'multiline'],
+    'react/jsx-max-props-per-line': [2, { maximum: 1, when: 'multiline' }],
+    'react/jsx-indent-props': [2, 2],
+    'react/jsx-closing-bracket-location': [2, 'tag-aligned'],
+    'react/react-in-jsx-scope': 'off',
+    'no-console': 2,
   },
-  settings: {
-    react: { version: "18.2" },
-    "import/resolver": {
-      //importするファイルをjsだけではなく、tsを含むファイルを許可する
-      node: {
-        paths: ["src"],
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
-      },
+  overrides: [
+    {
+      files: ['**/*.{js,jsx,ts,tsx'],
     },
-  },
+  ],
 };
