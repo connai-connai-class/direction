@@ -155,3 +155,16 @@ fresh:
 eslint-install:
 	docker compose exec app npm i -D eslint eslint-config-prettier eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks husky lint-staged prettier pretty-quick
 	docker compose exec app touch .eslintrc.cjs
+testlib-install:
+	docker compose exec app npm i -D vitest
+	docker compose exec app npm i -D @testing-library/react
+	docker compose exec app npm i -D @testing-library/jest-dom
+	docker compose exec app npm i -D happy-dom
+	docker compose exec app npm i -D @testing-library/user-event @types/testing-library__user-event
+	docker compose exec app npm i -D jest-extended
+test:
+	docker compose exec app npm run test
+story:
+	docker compose exec app npm run storybook
+build-story:
+	docker compose exec app npm run build-storybook

@@ -16,6 +16,25 @@ export default defineConfig({
     alias: {
       "@": base,
       "@pages": base + "/pages",
+      "@ui-elements": base + "/components/ui-elements",
+      "@ui-parts": base + "/components/ui-parts",
+      "@layouts": base + "/components/layouts",
+      "@features": base + "/features/",
+    },
+  },
+  test: {
+    environment: "happy-dom",
+    setupFiles: "./resources/js/__test__/setup.js",
+    testMatch: "./resources/js/**/*.test.jsx",
+    globals: true,
+  },
+  server: {
+    host: true,
+    hmr: {
+      host: "localhost",
+    },
+    watch: {
+      usePolling: true,
     },
   },
 });

@@ -16,12 +16,7 @@ module.exports = {
     },
   },
   plugins: ['react-refresh', 'prettier'],
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime', 'plugin:react-hooks/recommended', 'plugin:storybook/recommended'],
   rules: {
     'react-refresh/only-export-components': 'warn',
     'react/prop-types': 'off',
@@ -36,7 +31,6 @@ module.exports = {
     'react/jsx-indent-props': [2, 2],
     'react/jsx-closing-bracket-location': [2, 'tag-aligned'],
     'react/react-in-jsx-scope': 'off',
-    'no-console': 2,
   },
   overrides: [
     {
