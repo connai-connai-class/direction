@@ -13,6 +13,7 @@ export default function TextField({
   name = "",
   placeholder = "",
   onChange = () => false,
+  ...props
 }) {
   return (
     <Box>
@@ -24,6 +25,7 @@ export default function TextField({
         onChange={onChange}
         name={name}
         placeholder={placeholder}
+        {...props}
       />
       <InputError message={error} />
     </Box>

@@ -20,6 +20,7 @@ export const Default = {
     error: "",
     name: "input name",
     placeholder: "placeholder",
+    dataTestid: "test",
     onChange: () => false,
   },
 };

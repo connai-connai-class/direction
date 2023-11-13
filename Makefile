@@ -168,3 +168,5 @@ story:
 	docker compose exec app npm run storybook
 build-story:
 	docker compose exec app npm run build-storybook
+php-test:
+	docker compose exec app php artisan test --env=testing

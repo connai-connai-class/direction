@@ -8,6 +8,8 @@ export default function TextField({
   name = "",
   placeholder = "",
   onChange = () => false,
+  dataTestid = "",
+  ...props
 }) {
   return (
     <Box>
@@ -21,6 +23,8 @@ export default function TextField({
         error={error ? true : false}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
+        inputProps={{ "data-testid": dataTestid }}
+        {...props}
       />
     </Box>
   );

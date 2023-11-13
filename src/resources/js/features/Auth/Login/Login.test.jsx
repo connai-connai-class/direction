@@ -25,14 +25,14 @@ describe("Login form Test", () => {
 
   test("Should input email", async () => {
     const value = "test@test.com";
-    const email = screen.getByRole("textbox", { type: "email" });
+    const email = screen.getByTestId("email");
     await userEvent.type(email, value);
     expect(email.value).toBe(value);
   });
 
   test("Should input password", async () => {
     const value = "password";
-    const password = screen.getByRole("textbox", { type: "password" });
+    const password = screen.getByTestId("password");
     await userEvent.type(password, value);
     expect(password.value).toBe(value);
   });
@@ -42,13 +42,4 @@ describe("Login form Test", () => {
     fireEvent.click(remember);
     expect(remember.checked).toBe(true);
   });
-
-  // test("Should show error message", async () => {
-  //   const { getByText, getByRole } = render(<Login />);
-  //
-  //   const button = getByRole("button");
-  //   await userEvent.click(button);
-  //   expect(getByText("The email field is required."));
-  //   expect(getByText("The password field is required."));
-  // });
 });

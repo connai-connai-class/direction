@@ -10,6 +10,7 @@ export default function Login({ onSubmit, data, errors, setData, processing }) {
           <div className="mt-4" key={field}>
             <TextField
               type={field}
+              dataTestid={field}
               name={field}
               label={field}
               value={data[field]}

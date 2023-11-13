@@ -6,11 +6,19 @@ import TextField from "./";
 describe("TextField Test", () => {
   test("render TextField", async () => {
     const mockOnChange = vi.fn();
-    const { getByText, getByRole } = render(
-      <TextField label="氏名" value="" onChange={mockOnChange} />
+    const { getByText, getByPlaceholderText, getByRole } = render(
+      <TextField
+        label="氏名"
+        dataTestid="test-code"
+        placeholder="placeholder"
+        value=""
+        onChange={mockOnChange}
+      />
     );
 
     expect(getByText("氏名"));
+    expect(getByPlaceholderText("placeholder"));
+
     const input = getByRole("textbox");
     const value = "テスト太郎";
 
