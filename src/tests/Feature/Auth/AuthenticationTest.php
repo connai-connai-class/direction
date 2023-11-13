@@ -40,19 +40,14 @@ class AuthenticationTest extends TestCase
       'email' => $user->email,
       'password' => 'password',
     ];
-    $this->get(route('login'));
-    $this->followingRedirects()
-      ->post(route('login'), $params)
-      ->assertInertia(
-        fn (Assert $page) => $page
-          ->component('Dashboard')
-      );
+    $response = $this->post(route('login'), $params);
     $this->assertAuthenticatedAs($user);
+    $response->assertRedirect(RouteServiceProvider::HOME);
   }
 
   public function test_users_can_not_authenticate_no_request(): void
   {
-    $this->get(route('login'),);
+    $this->get(route('login'));
     $this->followingRedirects()
       ->post(route('login'))
       ->assertInertia(
