@@ -9,7 +9,7 @@ export default function Register() {
     password_confirmation: "",
   });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     post(route("register"));
   };

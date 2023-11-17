@@ -162,7 +162,7 @@ testlib-install:
 	docker compose exec app npm i -D happy-dom
 	docker compose exec app npm i -D @testing-library/user-event @types/testing-library__user-event
 	docker compose exec app npm i -D jest-extended
-test:
+js-test:
 	docker compose exec app npm run test
 story:
 	docker compose exec app npm run storybook

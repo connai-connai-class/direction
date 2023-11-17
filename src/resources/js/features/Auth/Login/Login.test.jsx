@@ -1,12 +1,11 @@
-import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
-import Login from "./";
+import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import Login from "./";
+import Form from "./Form";
 
 describe("Login form Test", () => {
   beforeEach(() => {
-    global.route = vi.fn();
-    global.post = vi.fn();
     render(<Login />);
   });
 
@@ -23,23 +22,81 @@ describe("Login form Test", () => {
     expect(remember.checked).toBe(false);
   });
 
-  test("Should input email", async () => {
+  test("Should click remember checkbox", async () => {
+    const remember = screen.queryByRole("checkbox");
+    await userEvent.click(remember);
+    expect(remember.checked).toBe(true);
+  });
+
+  test("Should input email ans initial value is null", async () => {
     const value = "test@test.com";
     const email = screen.getByTestId("email");
+    expect(email.value).toBe("");
     await userEvent.type(email, value);
     expect(email.value).toBe(value);
   });
 
-  test("Should input password", async () => {
+  test("Should input password initial value is null", async () => {
     const value = "password";
     const password = screen.getByTestId("password");
+    expect(password.value).toBe("");
     await userEvent.type(password, value);
     expect(password.value).toBe(value);
   });
 
-  test("Should click remember checkbox", async () => {
-    const remember = screen.queryByRole("checkbox");
-    fireEvent.click(remember);
-    expect(remember.checked).toBe(true);
+  test("Should show error message", async () => {
+    const params = {
+      data: {},
+      errors: {
+        email: "email error error",
+        password: "password error error",
+      },
+      setData: vi.fn(),
+      onSubmit: vi.fn(),
+      processing: false,
+    };
+
+    cleanup();
+    render(<Form {...params} />);
+
+    expect(screen.getByText("email error error")).toBeDefined();
+    expect(screen.getByText("password error error")).toBeDefined();
+  });
+
+  test("Should post login form", async () => {
+    const onSubmit = vi.fn();
+    const params = {
+      data: {},
+      errors: {},
+      setData: vi.fn(),
+      processing: false,
+      onSubmit,
+    };
+
+    cleanup();
+    render(<Form {...params} />);
+
+    const button = screen.getByRole("button");
+    await userEvent.click(button);
+    expect(onSubmit).toHaveBeenCalled();
+  });
+
+  test("Should not post login form", async () => {
+    const onSubmit = vi.fn();
+    const params = {
+      data: {},
+      errors: {},
+      setData: vi.fn(),
+      processing: true,
+      onSubmit,
+    };
+
+    cleanup();
+    render(<Form {...params} />);
+
+    const button = screen.getByRole("button");
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    await user.click(button);
+    expect(onSubmit).not.toHaveBeenCalled();
   });
 });

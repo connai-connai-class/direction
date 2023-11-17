@@ -19,7 +19,7 @@ export default function RegisterForm({
           error={errors.name}
           className="mt-1 block w-full"
           autoComplete="name"
-          onChange={v => setData("name", v)}
+          onChange={(v) => setData("name", v)}
           required
         />
       </div>
@@ -34,7 +34,7 @@ export default function RegisterForm({
           error={errors.email}
           className="mt-1 block w-full"
           autoComplete="username"
-          onChange={v => setData("email", v)}
+          onChange={(v) => setData("email", v)}
           required
         />
       </div>
@@ -50,7 +50,7 @@ export default function RegisterForm({
           error={errors.password}
           className="mt-1 block w-full"
           autoComplete="new-password"
-          onChange={v => setData("password", v)}
+          onChange={(v) => setData("password", v)}
           required
         />
       </div>
@@ -66,7 +66,7 @@ export default function RegisterForm({
           error={errors.password_confirmation}
           className="mt-1 block w-full"
           autoComplete="new-password"
-          onChange={v => setData("password_confirmation", v)}
+          onChange={(v) => setData("password_confirmation", v)}
           required
         />
       </div>
