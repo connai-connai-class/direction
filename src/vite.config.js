@@ -16,6 +16,7 @@ export default defineConfig({
     alias: {
       "@": base,
       "@pages": base + "/pages",
+      "@themes": base + "/common/theme/",
       "@ui-elements": base + "/components/ui-elements",
       "@ui-parts": base + "/components/ui-parts",
       "@layouts": base + "/components/layouts",

@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@headlessui/react": "^1.4.2",
+    "@iconify/react": "^4.1.1",
     "@inertiajs/react": "^1.0.0",
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",

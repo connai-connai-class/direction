@@ -10,12 +10,12 @@ describe("Register form Test", () => {
   });
 
   test("Should show register form", async () => {
-    expect(screen.queryByText("name")).toBeDefined();
-    expect(screen.queryByText("email")).toBeDefined();
-    expect(screen.queryByText("password")).toBeDefined();
-    expect(screen.queryByText("Confirm Password")).toBeDefined();
-    expect(screen.queryByText("register")).toBeDefined();
-    expect(screen.queryByText(/Already registered?/i)).toBeDefined();
+    expect(screen.getByText("name"));
+    expect(screen.getByText("email"));
+    expect(screen.getByText("password"));
+    expect(screen.getByText("Confirm Password"));
+    expect(screen.getByText("Register"));
+    expect(screen.getByText(/Already registered?/i));
   });
 
   test("Should input name and initial value is null", async () => {

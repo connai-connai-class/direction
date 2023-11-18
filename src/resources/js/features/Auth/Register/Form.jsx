@@ -78,7 +78,7 @@ export default function RegisterForm({
           className="ms-4"
           color="primary"
           disabled={processing}
-          title="register"
+          title="Register"
           type="submit"
         />
       </div>

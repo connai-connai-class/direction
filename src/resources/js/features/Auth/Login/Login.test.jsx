@@ -10,11 +10,11 @@ describe("Login form Test", () => {
   });
 
   test("Should show login form", async () => {
-    expect(screen.queryByText("email")).toBeDefined();
-    expect(screen.queryByText("password")).toBeDefined();
-    expect(screen.queryByText(/remember me/i)).toBeDefined();
-    expect(screen.queryByText(/Login/i)).toBeDefined();
-    expect(screen.queryByText(/Forgot your password?/i)).toBeDefined();
+    expect(screen.getByText("email")).toBeDefined();
+    expect(screen.getByText("password")).toBeDefined();
+    expect(screen.getByText(/remember me/i)).toBeDefined();
+    expect(screen.getByText(/Log in/i)).toBeDefined();
+    expect(screen.getByText(/Forgot your password?/i)).toBeDefined();
   });
 
   test("Should not check remember me checkbox at the start", () => {

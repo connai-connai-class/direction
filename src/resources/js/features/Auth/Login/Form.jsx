@@ -6,7 +6,7 @@ export default function Login({ onSubmit, data, errors, setData, processing }) {
   return (
     <>
       <form onSubmit={onSubmit} noValidate>
-        {fields.map(field => (
+        {fields.map((field) => (
           <div className="mt-4" key={field}>
             <TextField
               type={field}
@@ -15,7 +15,7 @@ export default function Login({ onSubmit, data, errors, setData, processing }) {
               label={field}
               value={data[field]}
               error={errors[field]}
-              onChange={v => setData(field, v)}
+              onChange={(v) => setData(field, v)}
             />
           </div>
         ))}
@@ -25,7 +25,7 @@ export default function Login({ onSubmit, data, errors, setData, processing }) {
             name="remember"
             checked={data.remember}
             label="Remember me"
-            onChange={v => setData("remember", v)}
+            onChange={(v) => setData("remember", v)}
           />
         </div>
 
@@ -33,7 +33,7 @@ export default function Login({ onSubmit, data, errors, setData, processing }) {
           <Link href={route("password.request")} text="Forgot your password?" />
 
           <div className="ms-4">
-            <Button title="Login" disabled={processing} type="submit">
+            <Button disabled={processing} type="submit">
               Log in
             </Button>
           </div>
