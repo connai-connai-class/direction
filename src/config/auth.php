@@ -43,6 +43,10 @@ return [
     'director' => [
       'driver' => 'session',
       'provider' => 'directors'
+    ],
+    'creator' => [
+      'driver' => 'session',
+      'provider' => 'creators'
     ]
   ],
 
@@ -71,6 +75,10 @@ return [
     'directors' => [
       'driver' => 'eloquent',
       'model' => App\Models\Director::class,
+    ],
+    'creators' => [
+      'driver' => 'eloquent',
+      'model' => App\Models\Creator::class,
     ]
 
     // 'users' => [
@@ -107,6 +115,12 @@ return [
     ],
     'directors' => [
       'provider' => 'directors',
+      'table' => 'password_reset_tokens',
+      'expire' => 60,
+      'throttle' => 60,
+    ],
+    'creators' => [
+      'provider' => 'creators',
       'table' => 'password_reset_tokens',
       'expire' => 60,
       'throttle' => 60,

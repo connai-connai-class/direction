@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::middleware('guest')->group(function () {
-  Route::get('register', function () {
-    return Inertia::render('Auth/Register');
-  })->name('register');
+  Route::get('register/director', function () {
+    return Inertia::render('Auth/Register', ['authority' => 'director']);
+  })->name('register.director');
+
+  Route::get('register/creator', function () {
+    return Inertia::render('Auth/Register', ['authority' => 'creator']);
+  })->name('register.creator');
 
   Route::get('login/director', function () {
     return Inertia::render('Auth/Login', ['authority' => 'director']);
@@ -32,7 +36,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('guest')->group(function () {
 
-  Route::post('register', [RegisteredUserController::class, 'store']);
+  Route::post('register', [RegisteredUserController::class, 'store'])->name('register');
 
   Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
@@ -43,7 +47,7 @@ Route::middleware('guest')->group(function () {
     ->name('password.store');
 });
 
-Route::middleware(['auth:director', 'auth'])->group(function () {
+Route::middleware(['auth:director,creator'])->group(function () {
   Route::get('verify-email', EmailVerificationPromptController::class)
     ->name('verification.notice');
 

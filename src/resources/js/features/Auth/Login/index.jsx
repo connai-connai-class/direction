@@ -1,7 +1,7 @@
 import { useForm } from "@inertiajs/react";
 import LoginForm from "./Form";
 
-export default function Login({ authority = "director" }) {
+export default function Login({ authority }) {
   const { data, setData, post, processing, errors } = useForm({
     email: "test1@test.com",
     password: "password",

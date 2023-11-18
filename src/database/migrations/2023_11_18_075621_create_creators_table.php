@@ -11,13 +11,12 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('directors', function (Blueprint $table) {
+    Schema::create('creators', function (Blueprint $table) {
       $table->id();
-      $table->uuid('director_uid')->comment('ディレクターuid');
+      $table->uuid('creator_uid')->comment('クリエイターuid');
       $table->string('name', 25)->comment('名前');
       $table->string('email')->comment('メールアドレス');
       $table->string('password')->comment('パスワード');
-      $table->string('introduction')->nullable()->comment('自己紹介');
       $table->string('profile_image')->nullable()->comment('プロフィール画像パス');
       $table->timestamp('email_verified_at')->nullable()->comment('メール認証日時');
       $table->rememberToken();
@@ -31,6 +30,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('directors');
+    Schema::dropIfExists('creators');
   }
 };

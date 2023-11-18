@@ -15,7 +15,7 @@ class Authenticate extends Middleware
 
     $authority = $request->authority;
     if (empty($authority)) {
-      $authority = auth()->check() ? auth()->guard() : 'director';
+      $authority = auth()->check() ? auth()->guard()->name : 'director';
     }
     return $request->expectsJson() ? null : route("login.$authority");
   }

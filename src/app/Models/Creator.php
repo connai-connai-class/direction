@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Director extends Authenticatable
+class Creator extends Authenticatable
 {
   use HasApiTokens, HasFactory, Notifiable;
 
@@ -44,8 +44,8 @@ class Director extends Authenticatable
 
   protected static function booted()
   {
-    static::creating(function (Director $model) {
-      empty($model->director_uid) && $model->director_uid = str()->uuid();
+    static::creating(function (Creator $model) {
+      empty($model->creator_uid) && $model->creator_uid = str()->uuid();
     });
   }
 }

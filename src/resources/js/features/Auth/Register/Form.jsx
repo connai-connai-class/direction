@@ -7,6 +7,7 @@ export default function RegisterForm({
   errors,
   setData,
   processing,
+  authority,
 }) {
   return (
     <form onSubmit={onSubmit} noValidate>
@@ -72,7 +73,7 @@ export default function RegisterForm({
       </div>
 
       <div className="flex items-center justify-end mt-4 gap-3">
-        <Link href={route("login")} text="Already registered?" />
+        <Link href={route(`login.${authority}`)} text="Already registered?" />
 
         <Button
           className="ms-4"
