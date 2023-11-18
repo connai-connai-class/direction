@@ -1,14 +1,15 @@
 import { useForm } from "@inertiajs/react";
 import LoginForm from "./Form";
 
-export default function Login() {
+export default function Login({ authority = "director" }) {
   const { data, setData, post, processing, errors } = useForm({
-    email: "",
-    password: "",
+    email: "test1@test.com",
+    password: "password",
     remember: false,
+    authority,
   });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     post(route("login"));
   };
