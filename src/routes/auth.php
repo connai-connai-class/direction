@@ -19,11 +19,11 @@ Route::middleware('guest')->group(function () {
 
   Route::get('login/director', function () {
     return Inertia::render('Auth/Login', ['authority' => 'director']);
-  })->name('login');
+  })->name('login.director');
 
   Route::get('login/creator', function () {
     return Inertia::render('Auth/Login', ['authority' => 'creator']);
-  })->name('login');
+  })->name('login.creator');
 
   Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
 
@@ -34,7 +34,7 @@ Route::middleware('guest')->group(function () {
 
   Route::post('register', [RegisteredUserController::class, 'store']);
 
-  Route::post('login/{authority}', [AuthenticatedSessionController::class, 'store']);
+  Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
   Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
     ->name('password.email');
@@ -43,7 +43,7 @@ Route::middleware('guest')->group(function () {
     ->name('password.store');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth:director', 'auth'])->group(function () {
   Route::get('verify-email', EmailVerificationPromptController::class)
     ->name('verification.notice');
 

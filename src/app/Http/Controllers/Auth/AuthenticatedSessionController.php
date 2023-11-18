@@ -28,12 +28,14 @@ class AuthenticatedSessionController extends Controller
    */
   public function destroy(Request $request): RedirectResponse
   {
+    $authority = auth()->guard()->name;
+
     Auth::logout();
 
     $request->session()->invalidate();
 
     $request->session()->regenerateToken();
 
-    return redirect(route('login'));
+    return redirect(route("login.$authority"));
   }
 }
