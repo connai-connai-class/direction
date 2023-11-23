@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Register from "./";
-import Form from "./Form";
+import Register from "../";
+import Form from "../components/Form";
 
 describe("Register form Test", () => {
   beforeEach(() => {

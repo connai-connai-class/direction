@@ -18,6 +18,7 @@ export default defineConfig({
       "@pages": base + "/pages",
       "@themes": base + "/common/theme/",
       "@hooks": base + "/common/hooks/",
+      "@icons": base + "/components/Icons",
       "@ui-elements": base + "/components/ui-elements",
       "@ui-parts": base + "/components/ui-parts",
       "@layouts": base + "/components/layouts",
