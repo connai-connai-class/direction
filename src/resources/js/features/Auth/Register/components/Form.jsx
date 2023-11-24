@@ -15,7 +15,7 @@ export default function RegisterForm({
         <TextField
           id="name"
           name="name"
-          label="name"
+          label="Name"
           value={data.name}
           error={errors.name}
           className="mt-1 block w-full"
@@ -30,7 +30,7 @@ export default function RegisterForm({
           id="email"
           type="email"
           name="email"
-          label="email"
+          label="Email"
           value={data.email}
           error={errors.email}
           className="mt-1 block w-full"
@@ -46,7 +46,7 @@ export default function RegisterForm({
           dataTestid="password"
           name="password"
           type="password"
-          label="password"
+          label="Password"
           value={data.password}
           error={errors.password}
           className="mt-1 block w-full"

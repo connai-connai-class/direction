@@ -6,6 +6,7 @@ import InputLabel from "./Form/InputLabel";
 import InputError from "./Form/InputError";
 import Button from "./Button";
 import Link from "./Link";
+import Card from "./Card";
 
 export {
   TextField,
@@ -16,4 +17,5 @@ export {
   Link,
   Logo,
   Iconify,
+  Card,
 };
