@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AuthCreator;
+namespace App\Http\Controllers\AuthDirector;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
    */
   public function create(): Response
   {
-    return Inertia::render('Auth/Register/Creator');
+    return Inertia::render('Auth/Register/Director');
   }
 
   /**

@@ -7,9 +7,9 @@ import { AuthLayout } from "@layouts";
 export default function LoginPage({ appName = "", ...props }) {
   return (
     <>
-      <Head title="Sign in" />
+      <Head title="Log in" />
       <AuthLayout>
-        <Typography variant="h4">Sign in to {appName}</Typography>
+        <Typography variant="h4">Log in to {appName}</Typography>
 
         <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
           Don’t have an account?
