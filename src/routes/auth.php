@@ -13,19 +13,19 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::middleware('guest')->group(function () {
-  Route::get('register/director', function () {
+  Route::get('director/register', function () {
     return Inertia::render('Auth/Register', ['authority' => 'director']);
   })->name('register.director');
 
-  Route::get('register/creator', function () {
+  Route::get('creator/register', function () {
     return Inertia::render('Auth/Register', ['authority' => 'creator']);
   })->name('register.creator');
 
-  Route::get('login/director', function () {
+  Route::get('director/login', function () {
     return Inertia::render('Auth/Login', ['authority' => 'director']);
   })->name('login.director');
 
-  Route::get('login/creator', function () {
+  Route::get('creator/login', function () {
     return Inertia::render('Auth/Login', ['authority' => 'creator']);
   })->name('login.creator');
 
