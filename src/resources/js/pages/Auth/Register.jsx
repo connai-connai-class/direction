@@ -3,7 +3,7 @@ import { Typography, Divider, Box } from "@mui/material";
 import { AuthLayout } from "@layouts";
 import { Register, SocialLogin } from "@features";
 
-export default function RegisterPage({ appName, ...props }) {
+export default function RegisterPage({ appName, authority }) {
   return (
     <>
       <Head title="Register" />
@@ -20,7 +20,7 @@ export default function RegisterPage({ appName, ...props }) {
             OR
           </Typography>
         </Divider>
-        <Register {...props} />
+        <Register authority={authority} />
       </AuthLayout>
     </>
   );

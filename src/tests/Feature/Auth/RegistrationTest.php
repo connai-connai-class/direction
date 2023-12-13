@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\Director;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Providers\RouteServiceProvider;
@@ -15,29 +16,30 @@ class RegistrationTest extends TestCase
   public function test_registration_screen_can_be_rendered(): void
   {
 
-    $this->get(route('register'))
+    $this->get(route('register.director'))
       ->assertInertia(
         fn (Assert $page) => $page
           ->component('Auth/Register')
       );
   }
 
-  public function test_new_users_can_register(): void
+  public function test_new_directors_can_register(): void
   {
     $response = $this->post(route('register'), [
-      'name' => 'Test User',
+      'name' => 'Test director',
       'email' => 'test@example.com',
       'password' => 'password',
       'password_confirmation' => 'password',
+      'authority' => 'director',
     ]);
 
     $this->assertAuthenticated();
     $response->assertRedirect(RouteServiceProvider::HOME);
   }
 
-  public function test_new_users_can_not_register_no_request_body(): void
+  public function test_new_directors_can_not_register_no_request_body(): void
   {
-    $this->get(route('register'));
+    $this->get(route('register.director'));
     $this->followingRedirects()
       ->post(route('register'))
       ->assertInertia(
@@ -49,13 +51,14 @@ class RegistrationTest extends TestCase
               ->where('name', 'The name field is required.')
               ->where('email', 'The email field is required.')
               ->where('password', 'The password field is required.')
+              ->etc()
           )
       );
   }
 
-  public function test_new_users_can_not_register_with_invalid_name(): void
+  public function test_new_directors_can_not_register_with_invalid_name(): void
   {
-    $this->get(route('register'));
+    $this->get(route('register.director'));
     $this->followingRedirects()
       ->post(route('register'), [
         'name' => 'namednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamednamed',
@@ -72,9 +75,9 @@ class RegistrationTest extends TestCase
       );
   }
 
-  public function test_new_users_can_not_register_with_invalid_email(): void
+  public function test_new_directors_can_not_register_with_invalid_email(): void
   {
-    $this->get(route('register'));
+    $this->get(route('register.director'));
     $this->followingRedirects()
       ->post(route('register'), [
         'email' => 'testtest',
@@ -119,9 +122,9 @@ class RegistrationTest extends TestCase
       );
   }
 
-  public function test_new_users_can_not_register_with_invalid_password(): void
+  public function test_new_directors_can_not_register_with_invalid_password(): void
   {
-    $this->get(route('register'));
+    $this->get(route('register.director'));
     $this->followingRedirects()
       ->post(route('register'), [
         'password' => 'testtest',

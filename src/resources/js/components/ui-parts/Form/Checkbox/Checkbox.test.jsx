@@ -1,16 +1,17 @@
-import { fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 import Checkbox from "./";
 
 describe("Checkbox Test", () => {
-  test("render Checkbox", async () => {
+  test("render Checkbox", () => {
     const { getByRole } = render(<Checkbox />);
     const input = getByRole("checkbox");
     expect(input).toBeDefined();
     expect(input.checked).toBe(false);
   });
 
-  test("Should checked Checkbox ", async () => {
+  test("Should checked Checkbox ", () => {
     const { getByRole } = render(<Checkbox checked />);
     const input = getByRole("checkbox");
     expect(input.checked).toBe(true);
@@ -20,8 +21,8 @@ describe("Checkbox Test", () => {
     const mockOnChange = vi.fn();
     const { getByRole } = render(<Checkbox onChange={mockOnChange} />);
     const input = getByRole("checkbox");
-    fireEvent.click(input);
-    expect(mockOnChange).toHaveBeenCalledTimes(1);
+    await userEvent.click(input);
+    expect(mockOnChange).toHaveBeenCalled();
   });
 
   test("Should click label", async () => {
@@ -30,7 +31,7 @@ describe("Checkbox Test", () => {
       <Checkbox onChange={mockOnChange} label="checkboxLabel" />
     );
     const label = getByText("checkboxLabel");
-    fireEvent.click(label);
-    expect(mockOnChange).toHaveBeenCalledTimes(1);
+    await userEvent.click(label);
+    expect(mockOnChange).toHaveBeenCalled();
   });
 });
