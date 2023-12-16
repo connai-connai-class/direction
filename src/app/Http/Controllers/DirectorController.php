@@ -38,7 +38,7 @@ class DirectorController extends Controller
   public function show(Request $request, $id)
   {
     $director = Director::find($id);
-    return Inertia::render('DirectorShow');
+    return Inertia::render('director/profile/Show');
   }
 
   /**

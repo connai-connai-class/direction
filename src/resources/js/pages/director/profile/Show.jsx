@@ -2,7 +2,7 @@
 
 
 
-export default function DirectorShow() {
+export default function DirectorProfileShow() {
   return (
 
     <div>
