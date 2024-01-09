@@ -42,7 +42,13 @@ Route::middleware(['auth:director,creator'])->group(function () {
     Route::get('/profile', function () {
       return Inertia::render('director/profile/Show');
     })->name('director.profile.show');
-    Route::patch('/profile', [DirectorProfileController::class, 'update'])->name('director.profile.update');
+    // Route::patch('/profile', [DirectorProfileController::class, 'update'])->name('director.profile.update');
+  });
+
+  Route::prefix('/creator')->group(function () {
+    Route::get('/profile', function () {
+      return Inertia::render('creator/profile/Show');
+    })->name('creator.profile.show');
   });
 });
 
