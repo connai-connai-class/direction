@@ -1,57 +1,51 @@
 import { AuthenticatedLayout } from "@layouts";
-import { Box } from "@mui/material";
-import Grid from '@mui/material/Grid';
-import Container from "@mui/material/Container";
+import Button from '@mui/material/Button';
+import Avatar from "@mui/material/Avatar";
 
 
 
 export default function DirectorProfileShow({ auth }) {
   return (
     <AuthenticatedLayout user={auth.user}>
-      <div className="flex bg-blue-500 justify-around rounded-md">
+      <div className="flex justify-between rounded-md p-5 ">
 
-        <div className="bg-red-500 w-2/5 ">
-          <div id="profile" className="flex w-3/5 items-center bg-purple-500 mb-10">
-            <div id="image" className="bg-pink-500 w-24 h-24 rounded-full">
-              <p>image</p>
+        <div className="w-1/2 rounded-md">
+          <div id="profile" className="flex items-center border mb-10">
+            <Avatar alt="profile" />
+            <div className="mx-5">
+              <h1>{auth.user.name}</h1>
+              <h3>{auth.user.email}</h3>
             </div>
-            <h1>ディレクター名</h1>
+            <h3>ニックネーム</h3>
           </div>
-
           <div className="text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Quae omnis facere consectetur, quidem culpa incidunt laborum sunt esse ea magni?
-            Vitae recusandae deserunt veritatis perspiciatis commodi!
-            Nihil eaque praesentium ducimus.
+            <div className="introdunction">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Quae omnis facere consectetur, quidem culpa incidunt laborum sunt esse ea magni?
+              Vitae recusandae deserunt veritatis perspiciatis commodi!
+              Nihil eaque praesentium ducimus.
+            </div>
+          </div>
+          <Button>シェアする</Button>
+        </div>
+        <div className="w-1/2 rounded-md">
+          bbbbb
+          <div className="container w-4/5 mx-auto border">
+            <div className="card border rounded-md h-100 bg-blue-100">
+              credit card
+            </div>
+            <div className="cardNumber my-5">
+              <p>XXXXXX-XXXXX-XXX</p>
+              <p>XXXXXX-XXXXX-XXX</p>
+            </div>
+            <div className="detail">
+              <p>name:<textarea name="name" cols="30" rows="1" className="w-100%">name</textarea></p>
+              <p>2024/01</p>
+              <Button>追加</Button>
+            </div>
           </div>
         </div>
-        <div className="bg-green-500 w-2/5">bbbbb</div>
       </div>
-
-
-      <Grid container style={{ border: '3px solid red', height: '500px' }}>
-        <Grid item xs={6} style={{ border: '3px solid green', height: '300px' }}>
-          <Grid style={{ border: '3px solid pink', marginLeft: '50px' }}>
-            <Grid style={{ border: '3px solid green' }}>
-              <Grid style={{ border: '3px solid black', width: '100px', height: '100px', borderRadius: '50%' }}>
-                image
-              </Grid>
-              <Grid>ディレクター名</Grid>
-            </Grid>
-            <Box>ニックネーム</Box>
-          </Grid>
-          <Box style={{ border: '3px solid blue', marginLeft: '50px' }}>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Ex distinctio eligendi deserunt esse, qui reprehenderit mollitia,
-              voluptatibus eum pariatur repudiandae quam autem incidunt,
-              sapiente quis officia! Eos, beatae ad. Aperiam.
-            </p>
-          </Box>
-        </Grid>
-        <Grid item={6} xs={6} style={{ border: '3px solid green' }}>
-          <Container style={{ border: '3px solid blue' }}><p>aaa</p></Container>
-        </Grid>
-      </Grid>
     </AuthenticatedLayout>
 
 
