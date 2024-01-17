@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,14 +26,31 @@ Route::get('/', function () {
   ]);
 })->name('top');
 
-Route::get('/dashboard', function () {
-  return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth:director,creator'])->group(function () {
+  Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+  })->name('dashboard');
+
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+  Route::prefix('/director')->group(function () {
+
+    Route::get('/profile', function () {
+      return Inertia::render('director/profile/Show');
+    })->name('director.profile.show');
+    // Route::patch('/profile', [DirectorProfileController::class, 'update'])->name('director.profile.update');
+  });
+
+  Route::prefix('/creator')->group(function () {
+    Route::get('/profile', function () {
+      return Inertia::render('creator/profile/Show');
+    })->name('creator.profile.show');
+  });
 });
+
 
 require __DIR__ . '/auth.php';

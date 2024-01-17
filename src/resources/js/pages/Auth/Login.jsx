@@ -4,7 +4,7 @@ import { Link } from "@ui-elements";
 import { Login, SocialLogin } from "@features";
 import { AuthLayout } from "@layouts";
 
-export default function LoginPage({ appName = "", ...props }) {
+export default function LoginPage({ appName, authority }) {
   return (
     <>
       <Head title="Sign in" />
@@ -13,7 +13,7 @@ export default function LoginPage({ appName = "", ...props }) {
 
         <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
           Don’t have an account?
-          <Link className="ml-1" href={route("register")}>
+          <Link className="ml-1" href={route(`register.${authority}`)}>
             Get started
           </Link>
         </Typography>
@@ -24,7 +24,7 @@ export default function LoginPage({ appName = "", ...props }) {
             OR
           </Typography>
         </Divider>
-        <Login {...props} />
+        <Login authority={authority} />
       </AuthLayout>
     </>
   );
