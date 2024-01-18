@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\DirectorProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ Route::middleware(['auth:director,creator'])->group(function () {
     Route::get('/profile', function () {
       return Inertia::render('director/profile/Show');
     })->name('director.profile.show');
+    Route::post('/profile/create', [DirectorProfileController::class, "create"]);
     // Route::patch('/profile', [DirectorProfileController::class, 'update'])->name('director.profile.update');
   });
 });

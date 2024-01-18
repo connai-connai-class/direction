@@ -34,8 +34,9 @@ init:
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	@make fresh
+	@make npm-up
 	@make npm-install
-	@make npm-watch
+	@make npm-dev
 
 remake:
 	@make destroy
@@ -129,11 +130,8 @@ node-init:
 	docker compose exec app apt-get update
 	docker compose exec app apt-get install nodejs -y
 npm-init:
-	@make web-update
-	@make node-init
-	docker compose exec app apt-get install npm -y
+	@make npm-up
 	@make npm-install
-
 npm-up:
 	@make web-update
 	@make node-init

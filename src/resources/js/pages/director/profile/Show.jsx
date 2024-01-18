@@ -1,10 +1,43 @@
+import { useState } from "react";
 import { AuthenticatedLayout } from "@layouts";
 import Button from '@mui/material/Button';
 import Avatar from "@mui/material/Avatar";
+import axios from "axios";
 
 
 
 export default function DirectorProfileShow({ auth }) {
+
+  const inputChange = (e) => {
+    // const key = e.target.name;
+    // const value = e.target.value;
+    // formIntro[key] = value;
+    // let datas = Object.assign({}, formIntro);
+    setFormIntro(e.target.value);
+    console.log(formIntro);
+  }
+
+  const [formIntro, setFormIntro] = useState({
+    profile_introduction: ""
+  });
+
+  const createIntroduction = async () => {
+    console.log('success'),
+      await axios
+        .post('/director/profile/create'), {
+          introduction: formIntro.profile_introduction
+        }
+          .then((res) => {
+            const tempPosts = post;
+            tempPosts.push(res.data);
+            setPosts(tempPosts)
+            setFormIntro('');
+          })
+          .catch(error => {
+            console.log(error);
+          })
+  };
+
   return (
     <AuthenticatedLayout user={auth.user}>
       <div className="flex justify-between rounded-md p-5 ">
@@ -19,14 +52,14 @@ export default function DirectorProfileShow({ auth }) {
             <h3>ニックネーム</h3>
           </div>
           <div className="text">
-            <div className="introdunction">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Quae omnis facere consectetur, quidem culpa incidunt laborum sunt esse ea magni?
-              Vitae recusandae deserunt veritatis perspiciatis commodi!
-              Nihil eaque praesentium ducimus.
+            <div className="introduction">
+              <p>{auth.user.introduction}</p>
             </div>
           </div>
-          <Button>シェアする</Button>
+          <textarea name="introduction" id="introduction" type="text" cols="30" rows="2" onChange={inputChange}></textarea>
+          <div className="btn">
+            <Button onClick={createIntroduction}>シェアする</Button>
+          </div>
         </div>
         <div className="w-1/2 rounded-md">
           bbbbb
