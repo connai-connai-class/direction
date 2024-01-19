@@ -9,9 +9,10 @@ class DirectorProfileController extends Controller
 {
   public function create(Request $request)
   {
-    $introduction = new Director;
-    $introduction->introduction = $request->profile_introduction;
-    $introduction->save();
-    return response()->json($introduction);
+    $director = new Director;
+    $director->name = $request->name;
+    $director->introduction = $request->introduction;
+    $director->save();
+    return response()->json($director);
   }
 }

@@ -13,29 +13,31 @@ export default function DirectorProfileShow({ auth }) {
     // const value = e.target.value;
     // formIntro[key] = value;
     // let datas = Object.assign({}, formIntro);
-    setFormIntro(e.target.value);
-    console.log(formIntro);
+    setFormData(e.target.value);
+    // console.log(formData);
   }
 
-  const [formIntro, setFormIntro] = useState({
-    profile_introduction: ""
+  const [formData, setFormData] = useState({
+    name: 'director',
+    introduction: ""
   });
 
   const createIntroduction = async () => {
-    console.log('success'),
-      await axios
-        .post('/director/profile/create'), {
-          introduction: formIntro.profile_introduction
-        }
-          .then((res) => {
-            const tempPosts = post;
-            tempPosts.push(res.data);
-            setPosts(tempPosts)
-            setFormIntro('');
-          })
-          .catch(error => {
-            console.log(error);
-          })
+    await axios
+      .post('/director/profile/create'), {
+        name: 'director',
+        introduction: formData.introduction
+      }
+        .then((res) => {
+          const tempPosts = post;
+          tempPosts.push(res.data);
+          setPosts(tempPosts)
+          setFormData('');
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    console.log(formData);
   };
 
   return (
@@ -53,7 +55,7 @@ export default function DirectorProfileShow({ auth }) {
           </div>
           <div className="text">
             <div className="introduction">
-              <p>{auth.user.introduction}</p>
+              <p>introduction:{auth.user.introduction}</p>
             </div>
           </div>
           <textarea name="introduction" id="introduction" type="text" cols="30" rows="2" onChange={inputChange}></textarea>
@@ -72,7 +74,7 @@ export default function DirectorProfileShow({ auth }) {
               <p>XXXXXX-XXXXX-XXX</p>
             </div>
             <div className="detail">
-              <p>name:<textarea name="name" cols="30" rows="1" className="w-100%">name</textarea></p>
+              <p>name:<textarea name="name" cols="30" rows="1" className="w-100%"></textarea></p>
               <p>2024/01</p>
               <Button>追加</Button>
             </div>
