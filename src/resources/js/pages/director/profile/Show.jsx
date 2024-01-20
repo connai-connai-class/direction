@@ -9,23 +9,27 @@ import axios from "axios";
 export default function DirectorProfileShow({ auth }) {
 
   const inputChange = (e) => {
-    // const key = e.target.name;
-    // const value = e.target.value;
-    // formIntro[key] = value;
-    // let datas = Object.assign({}, formIntro);
-    setFormData(e.target.value);
-    // console.log(formData);
+    const key = e.target.name;
+    const value = e.target.value;
+    formData[key] = value;
+    let datas = Object.assign({}, formData);
+    setFormData(datas);
   }
 
   const [formData, setFormData] = useState({
-    name: 'director',
+    name: auth.user.name,
     introduction: ""
   });
 
+  // console.log(formData);
+
   const createIntroduction = async () => {
+
+    console.log(formData.introduction);
+
     await axios
       .post('/director/profile/create'), {
-        name: 'director',
+        name: auth.user.name,
         introduction: formData.introduction
       }
         .then((res) => {
@@ -37,7 +41,6 @@ export default function DirectorProfileShow({ auth }) {
         .catch(error => {
           console.log(error);
         })
-    console.log(formData);
   };
 
   return (

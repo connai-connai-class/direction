@@ -12,7 +12,7 @@ class DirectorProfileController extends Controller
     $director = new Director;
     $director->name = $request->name;
     $director->introduction = $request->introduction;
-    $director->save();
+    // $director->save();
     return response()->json($director);
   }
 }
