@@ -20,7 +20,6 @@ class Director extends Authenticatable
     'name',
     'introduction',
     'email',
-    'password',
   ];
 
   /**

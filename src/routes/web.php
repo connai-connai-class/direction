@@ -43,8 +43,8 @@ Route::middleware(['auth:director,creator'])->group(function () {
     Route::get('/profile', function () {
       return Inertia::render('director/profile/Show');
     })->name('director.profile.show');
-    Route::post('/profile/create', [DirectorProfileController::class, "create"]);
-    // Route::patch('/profile', [DirectorProfileController::class, 'update'])->name('director.profile.update');
+    // Route::post('/profile/create', [DirectorProfileController::class, "update"]);
+    Route::patch('/profile', [DirectorProfileController::class, 'update'])->name('director.profile.update');
   });
 });
 

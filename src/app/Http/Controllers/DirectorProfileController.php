@@ -3,16 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Director;
+// use App\Models\Director;
+
 
 class DirectorProfileController extends Controller
 {
-  public function create(Request $request)
+  public function update(Request $request)
   {
-    $director = new Director;
-    $director->name = $request->name;
-    $director->introduction = $request->introduction;
-    // $director->save();
+    $director = auth()->user();
+    $director->fill($request->all());
+    // $request->all()の戻り値が連想配列、つまり["introduction"=>"入力値","name"=>"名前",]
+    // fill()によってインスタンスに代入が行われる
+    // all()はrequest値を連想配列で取得
+    // 連想配列はkeyとvalueがある
+    // $director->introduction = $request->introduction;
+    $director->update();
     return response()->json($director);
+    // return $director;
+    // return response()->json("",204);
+    // 更新処理は204.
   }
 }

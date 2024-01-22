@@ -17,30 +17,25 @@ export default function DirectorProfileShow({ auth }) {
   }
 
   const [formData, setFormData] = useState({
-    name: auth.user.name,
     introduction: ""
   });
 
-  // console.log(formData);
 
   const createIntroduction = async () => {
 
-    console.log(formData.introduction);
-
     await axios
-      .post('/director/profile/create'), {
-        name: auth.user.name,
+      .patch(route('director.profile.update'), {
         introduction: formData.introduction
-      }
-        .then((res) => {
-          const tempPosts = post;
-          tempPosts.push(res.data);
-          setPosts(tempPosts)
-          setFormData('');
-        })
-        .catch(error => {
-          console.log(error);
-        })
+      })
+      .then((res) => {
+        const tempPosts = post;
+        tempPosts.push(res.data);
+        setPosts(tempPosts)
+        setFormData('');
+      })
+      .catch(error => {
+        console.log(error);
+      })
   };
 
   return (
@@ -58,10 +53,10 @@ export default function DirectorProfileShow({ auth }) {
           </div>
           <div className="text">
             <div className="introduction">
-              <p>introduction:{auth.user.introduction}</p>
+              <label>introduction:</label>
             </div>
           </div>
-          <textarea name="introduction" id="introduction" type="text" cols="30" rows="2" onChange={inputChange}></textarea>
+          <textarea name="introduction" id="introduction" type="text" cols="30" rows="2" defaultValue={auth.user.introduction} onChange={inputChange}></textarea>
           <div className="btn">
             <Button onClick={createIntroduction}>シェアする</Button>
           </div>
@@ -77,7 +72,7 @@ export default function DirectorProfileShow({ auth }) {
               <p>XXXXXX-XXXXX-XXX</p>
             </div>
             <div className="detail">
-              <p>name:<textarea name="name" cols="30" rows="1" className="w-100%"></textarea></p>
+              <div className="flex items-center">name:<input name="name" className="w-full" /></div>
               <p>2024/01</p>
               <Button>追加</Button>
             </div>
