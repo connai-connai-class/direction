@@ -18,8 +18,8 @@ class Director extends Authenticatable
    */
   protected $fillable = [
     'name',
+    'introduction',
     'email',
-    'password',
   ];
 
   /**

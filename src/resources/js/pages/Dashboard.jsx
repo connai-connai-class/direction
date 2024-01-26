@@ -1,7 +1,17 @@
 import { AuthenticatedLayout } from "@layouts";
 import { Head } from "@inertiajs/react";
+import { Link } from "@mui/material";
 
 export default function Dashboard({ auth }) {
+  console.log(auth.user);
+  let message;
+
+  if (auth?.user.director_uid) {
+    message = <Link href="/director/profile">director_profile</Link>;
+  } else {
+    message = <Link href="/creator/profile">creator_profile</Link>;
+  }
+
 
   return (
     <AuthenticatedLayout user={auth.user}>
@@ -15,6 +25,7 @@ export default function Dashboard({ auth }) {
           </div>
         </div>
       </div>
+      {message}
     </AuthenticatedLayout>
   );
 }
