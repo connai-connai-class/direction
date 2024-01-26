@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DirectorProfileController;
+use App\Http\Controllers\CreditCardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,8 @@ Route::middleware(['auth:director,creator'])->group(function () {
     // Route::post('/profile/create', [DirectorProfileController::class, "update"]);
     Route::patch('/profile', [DirectorProfileController::class, 'update'])->name('director.profile.update');
   });
+
+  Route::post('/credit_card/update', [CreditCardController::class, 'update'])->name('credit_card.update');
 });
 
 

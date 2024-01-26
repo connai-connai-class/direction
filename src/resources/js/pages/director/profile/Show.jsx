@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AuthenticatedLayout } from "@layouts";
 import Button from '@mui/material/Button';
 import Avatar from "@mui/material/Avatar";
+import Input from "@mui/material/Input";
 import axios from "axios";
 
 
@@ -11,9 +12,16 @@ export default function DirectorProfileShow({ auth }) {
   const inputChange = (e) => {
     const key = e.target.name;
     const value = e.target.value;
-    formData[key] = value;
-    let datas = Object.assign({}, formData);
-    setFormData(datas);
+    const id = e.target.id;
+    if (id == "introduction") {
+      formData[key] = value;
+      let datas = Object.assign({}, formData);
+      setFormData(datas);
+    } else {
+      creditData[key] = value;
+      let datas = Object.assign({}, creditData);
+      setCreditData(datas);
+    }
   }
 
   const [formData, setFormData] = useState({
@@ -22,8 +30,8 @@ export default function DirectorProfileShow({ auth }) {
 
 
   const createIntroduction = async () => {
-
     await axios
+      // .post('/api/posts/create',{元の書き方はこっち
       .patch(route('director.profile.update'), {
         introduction: formData.introduction
       })
@@ -37,6 +45,21 @@ export default function DirectorProfileShow({ auth }) {
         console.log(error);
       })
   };
+
+  const [creditData, setCreditData] = useState({
+    name: "",
+    card_number: ""
+  });
+
+  const createCredit = async () => {
+    console.log(creditData);
+    await axios
+      .post(route('credit_card.update'), {
+        name: creditData.name,
+        card_number: creditData.card_number
+      })
+  };
+
 
   return (
     <AuthenticatedLayout user={auth.user}>
@@ -56,7 +79,7 @@ export default function DirectorProfileShow({ auth }) {
               <label>introduction:</label>
             </div>
           </div>
-          <textarea name="introduction" id="introduction" type="text" cols="30" rows="2" defaultValue={auth.user.introduction} onChange={inputChange}></textarea>
+          <textarea id="introduction" name="introduction" type="text" cols="30" rows="2" defaultValue={auth.user.introduction} onChange={inputChange}></textarea>
           <div className="btn">
             <Button onClick={createIntroduction}>シェアする</Button>
           </div>
@@ -72,9 +95,14 @@ export default function DirectorProfileShow({ auth }) {
               <p>XXXXXX-XXXXX-XXX</p>
             </div>
             <div className="detail">
-              <div className="flex items-center">name:<input name="name" className="w-full" /></div>
+              <div className="credit_card_name flex items-center">
+                name:<Input id="credit_card_name" name="name" type="text" onChange={inputChange} />
+              </div>
+              <div className="credit_card_number">
+                number:<Input id="credit_card_number" name="card_number" type="text" onChange={inputChange} />
+              </div>
               <p>2024/01</p>
-              <Button>追加</Button>
+              <Button onClick={createCredit}>追加</Button>
             </div>
           </div>
         </div>
