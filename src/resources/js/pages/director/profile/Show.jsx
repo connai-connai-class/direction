@@ -1,41 +1,23 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { useForm } from "@inertiajs/react";
 import { AuthenticatedLayout } from "@layouts";
 import Button from '@mui/material/Button';
 import Avatar from "@mui/material/Avatar";
-import axios from "axios";
+import TextField from "@mui/material/TextField";
 
 
 
 export default function DirectorProfileShow({ auth }) {
 
-  const inputChange = (e) => {
-    const key = e.target.name;
-    const value = e.target.value;
-    formData[key] = value;
-    let datas = Object.assign({}, formData);
-    setFormData(datas);
-  }
+  // data変数の宣言はしなくていいの？
+  const { patch, setData } =
+    useForm({
+      introduction: auth.user.introduction
+    });
 
-  const [formData, setFormData] = useState({
-    introduction: ""
-  });
-
-
-  const createIntroduction = async () => {
-
-    await axios
-      .patch(route('director.profile.update'), {
-        introduction: formData.introduction
-      })
-      .then((res) => {
-        const tempPosts = post;
-        tempPosts.push(res.data);
-        setPosts(tempPosts)
-        setFormData('');
-      })
-      .catch(error => {
-        console.log(error);
-      })
+  const onSubmit = (e) => {
+    e.preventDefault();
+    patch(route("director.profile.update"));
   };
 
   return (
@@ -56,10 +38,20 @@ export default function DirectorProfileShow({ auth }) {
               <label>introduction:</label>
             </div>
           </div>
-          <textarea name="introduction" id="introduction" type="text" cols="30" rows="2" defaultValue={auth.user.introduction} onChange={inputChange}></textarea>
-          <div className="btn">
-            <Button onClick={createIntroduction}>シェアする</Button>
-          </div>
+          <form onSubmit={onSubmit}>
+            <TextField
+              multiline
+              type="text"
+              name="introduction"
+              rows={4}
+              style={{ width: '400px' }}
+              defaultValue={auth.user.introduction}
+              onChange={e => setData('introduction', e.target.value)}
+            />
+            <div className="btn">
+              <Button type="submit">シェアする</Button>
+            </div>
+          </form>
         </div>
         <div className="w-1/2 rounded-md">
           bbbbb

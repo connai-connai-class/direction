@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 // use App\Models\Director;
 
 
@@ -18,7 +20,7 @@ class DirectorProfileController extends Controller
     // 連想配列はkeyとvalueがある
     // $director->introduction = $request->introduction;
     $director->update();
-    return response()->json($director);
+    return Inertia::render('director/profile/Show', $director);
     // return $director;
     // return response()->json("",204);
     // 更新処理は204.
